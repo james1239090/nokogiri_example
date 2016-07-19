@@ -1,0 +1,2 @@
+class TrunkLine < ApplicationRecord
+end

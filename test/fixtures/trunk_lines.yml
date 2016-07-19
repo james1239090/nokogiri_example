@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  respond_area: MyString
+  car_no: 1
+  number: 1
+  dist: MyString
+  vil: MyString
+  address: MyString
+  around_time: MyString
+  recover_date: MyString
+
+two:
+  respond_area: MyString
+  car_no: 1
+  number: 1
+  dist: MyString
+  vil: MyString
+  address: MyString
+  around_time: MyString
+  recover_date: MyString
