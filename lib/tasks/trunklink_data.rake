@@ -22,4 +22,20 @@ task :clone_data => [:environment] do
   end
 
 end
+desc "Clone Data for dist"
+task :Clone_dist => [:environment] do
+  require 'nokogiri'
+  require 'open-uri'
 
+
+  url = URI.encode("http://waste.ksepb.gov.tw/index.php")
+  doc = Nokogiri::HTML(open(url))
+
+
+  doc.css("#Contentcarry_lineSearchs_D option").each do |item|
+    dist = Dist.new
+    dist.title = item.text
+    dist.save
+  end
+
+end
