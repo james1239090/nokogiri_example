@@ -10,16 +10,16 @@ task :clone_data => [:environment] do
 
   doc.css(".Row").each do |item|
     line = TrunkLine.new
-    line.respond_area = item.at_css("td:nth-child(1)").text[/[^\\r\\n\s]+/g]
-    line.car_no = item.at_css("td:nth-child(2)").text[/[^\\r\\n\s]+/g]
-    line.number = item.at_css("td:nth-child(3)").text[/[^\\r\\n\s]+/g]
-    line.dist = item.at_css("td:nth-child(4)").text[/[^\\r\\n\s]+/g]
-    line.vil = item.at_css("td:nth-child(5)").text[/[^\\r\\n\s]+/g]
-    line.address = item.at_css("td:nth-child(6)").text[/[^\\r\\n\s]+/g]
-    line.around_time = item.at_css("td:nth-child(7)").text[/[^\\r\\n\s]+/g]
-    line.recover_date = item.at_css("td:nth-child(8)").text[/[^\\r\\n\s]+/g]
+    line.respond_area = item.at_css("td:nth-child(1)").text
+    line.car_no = item.at_css("td:nth-child(2)").text
+    line.number = item.at_css("td:nth-child(3)").text
+    line.dist = item.at_css("td:nth-child(4) a").text
+    line.vil = item.at_css("td:nth-child(5) a").text
+    line.address = item.at_css("td:nth-child(6)").text
+    line.around_time = item.at_css("td:nth-child(7)").text
+    line.recover_date = item.at_css("td:nth-child(8)").text
     line.save
   end
 
-
 end
+
