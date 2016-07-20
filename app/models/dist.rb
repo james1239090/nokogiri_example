@@ -1,0 +1,2 @@
+class Dist < ApplicationRecord
+end

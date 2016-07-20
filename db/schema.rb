@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719092656) do
+ActiveRecord::Schema.define(version: 20160720073658) do
+
+  create_table "dists", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "trunk_lines", force: :cascade do |t|
     t.string   "respond_area"
