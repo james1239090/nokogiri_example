@@ -23,7 +23,7 @@ task :clone_data => [:environment] do
 
 end
 desc "Clone Data for dist"
-task :Clone_dist => [:environment] do
+task :clone_dist => [:environment] do
   require 'nokogiri'
   require 'open-uri'
 
@@ -39,3 +39,11 @@ task :Clone_dist => [:environment] do
   end
 
 end
+
+
+desc "clone Data for Vil"
+task :clone_vil => [:environment] do
+
+end
+
+
