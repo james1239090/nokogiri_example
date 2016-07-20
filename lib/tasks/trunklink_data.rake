@@ -43,7 +43,20 @@ end
 
 desc "clone Data for Vil"
 task :clone_vil => [:environment] do
+  require 'nokogiri'
+  require 'open-uri'
+  require 'uri'
+
+  url_home = "http://waste.ksepb.gov.tw/index.php"
+  url = URI.encode(url_home)
+  doc = Nokogiri::HTML(open(url))
+
+  doc.css("#Contentcarry_lineSearchs_E option").each do |item|
+    vil = Village.new
+    vil.title = item.text
+    vil.save
+  end
+
+  # end
 
 end
-
-
