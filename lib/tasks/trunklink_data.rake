@@ -63,10 +63,12 @@ task :clone_dist => [:environment] do
   url = URI.encode("http://waste.ksepb.gov.tw/index.php")
   doc = Nokogiri::HTML(open(url))
 
+  items = doc.css("#Contentcarry_lineSearchs_D option").map{|dist| dist.text}
+  items.shift
 
-  doc.css("#Contentcarry_lineSearchs_D option").each do |item|
+  items.each do |item|
     dist = Dist.new
-    dist.title = item.text
+    dist.title = item
     dist.save
   end
 
