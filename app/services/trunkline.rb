@@ -21,13 +21,12 @@ class Trunkline
   end
 
   def clone_data!
-
+    TrunkLine.destroy_all
     dists = Dist.all
 
     dists.each do |dist|
-
       page = find_end_page(dist.title)
-      fetch_dist(dist.title,page)
+      fetch_dist(dist.title,page.to_i)
     end
 
   end
@@ -59,17 +58,24 @@ class Trunkline
       doc = Nokogiri::HTML(open(url))
 
       doc.css(".Row").each do |item|
-        line = TrunkLine.new
-        line.respond_area = item.at_css("td:nth-child(1)").text
-        line.car_no = item.at_css("td:nth-child(2)").text
-        line.number = item.at_css("td:nth-child(3)").text
-        line.dist = item.at_css("td:nth-child(4) a").text
-        line.vil = item.at_css("td:nth-child(5) a").text
-        line.address = item.at_css("td:nth-child(6)").text
-        line.around_time = item.at_css("td:nth-child(7)").text
-        line.recover_date = item.at_css("td:nth-child(8)").text
-        line.save
+        one_row_data = item.css("td").map{|c| c.text}
+        save_row(one_row_data)
       end
     end
+  end
+  def save_row(data)
+    TrunkLine.transaction do
+      line = TrunkLine.new
+      line.respond_area = data[0]
+      line.car_no = data[1]
+      line.number = data[2]
+      line.dist = data[3]
+      line.vil = data[4]
+      line.address = data[5]
+      line.around_time = data[6]
+      line.recover_date = data[7]
+      line.save
+    end
+
   end
 end
