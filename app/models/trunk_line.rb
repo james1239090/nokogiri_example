@@ -24,7 +24,7 @@ class TrunkLine < ApplicationRecord
 
   	full_address = process_end_address(full_address)
 
-  	self.full_address = full_address
+  	self.full_address = full_address.strip
   end
 
   def process_end_address(addr)

@@ -1,6 +1,6 @@
 class Trunkline
   def initialize
-    @url_home = "now is secret"
+    @url_home = "http://waste.ksepb.gov.tw/index.php"
   end
 
 
