@@ -1,0 +1,2 @@
+class TrunkLinesController < ApplicationController
+end
