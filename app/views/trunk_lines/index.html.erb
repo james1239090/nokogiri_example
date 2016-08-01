@@ -1,11 +1,22 @@
 <div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+  <div id="map" style='width: 800px; height: 800px;'></div>
 </div>
+<div></div>
 <script type="text/javascript">
   handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers(<%= raw @hash.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
+    handler.buildMap({
+          provider: {
+            disableDefaultUI: true,
+            zoom: 15,
+            center: {lat:<%= @hash[0][:lat] %>,lng:<%= @hash[0][:lng] %>}
+          },
+          internal: {
+            id: 'map'
+          }},
+          function(){
+            markers = handler.addMarkers(<%= raw @hash.to_json %>);
+            handler.bounds.extendWith(markers);
+            // handler.fitMapToBounds();
+            // handler.getMap().setZoom(10);
+          });
 </script>
