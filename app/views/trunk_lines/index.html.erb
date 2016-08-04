@@ -3,20 +3,22 @@
 </div>
 <div></div>
 <script type="text/javascript">
-  handler = Gmaps.build('Google');
+  $(document).ready(function(){
+    handler = Gmaps.build('Google',{ builders: { Marker: InfoBoxBuilder}});
     handler.buildMap({
-          provider: {
-            disableDefaultUI: true,
-            zoom: 15,
-            center: {lat:<%= @hash[0][:lat] %>,lng:<%= @hash[0][:lng] %>}
-          },
-          internal: {
-            id: 'map'
-          }},
-          function(){
+            provider: {
+                disableDefaultUI: true,
+                zoom: 15,
+                center: { lat: <%= @hash[0][:lat] %>, lng: <%= @hash[0][:lng] %> }
+            },
+            internal: {
+                id: 'map'
+            }
+        },
+        function() {
             markers = handler.addMarkers(<%= raw @hash.to_json %>);
             handler.bounds.extendWith(markers);
             // handler.fitMapToBounds();
-            // handler.getMap().setZoom(10);
-          });
+        });
+    });
 </script>
