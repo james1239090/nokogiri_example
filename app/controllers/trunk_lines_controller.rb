@@ -6,7 +6,7 @@ class TrunkLinesController < ApplicationController
     @hash = Gmaps4rails.build_markers(@trunklines) do |trunkline, marker|
       marker.lat trunkline.latitude
       marker.lng trunkline.longitude
-      marker.infowindow trunkline.full_address
+      marker.infowindow "<div class='col-xs-12'>#{trunkline.full_address}</div>"
     end
   end
 
