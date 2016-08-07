@@ -1,32 +1,26 @@
 <div class="row">
-  <form>
-    <div class="col-md-10">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="請輸入地址" id="searchAddress">
-      </div>
-    </div>
-    <div class="col-md-2">
-      <%= submit_tag "搜尋",remote: true, class: "btn btn-primary",method: :get, data: {disable_with: "搜尋中...."} %>
-    </div>
-  </form>
+<%= simple_form_for :search,  url: trunk_lines_path , :method => :get do |f| %>
+    <%= f.input :address, placeholder: '地址' ,:autofocus => true %>
+    <%= f.submit "Search" %>
+<% end %>
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
-                    handler = Gmaps.build('Google');
-                    handler.buildMap({
-                            provider: {
-                                disableDefaultUI: true,
-                                zoom: 15,
-                                center: { lat: <%= @hash[0][:lat] %>, lng: <%= @hash[0][:lng] %> }
-                            },
-                            internal: {
-                                id: 'map'
-                            }
-                        },
-                        function() {
-                            markers = handler.addMarkers(<%= raw @hash.to_json %>);
-                            handler.bounds.extendWith(markers);
-                            // handler.fitMapToBounds();
-                        });
-                    });
+	  handler = Gmaps.build('Google');
+	  handler.buildMap({
+	          provider: {
+	              disableDefaultUI: true,
+	              zoom: 15,
+	              center: { lat: <%= @hash[0][:lat] %>, lng: <%= @hash[0][:lng] %> }
+	          },
+	          internal: {
+	              id: 'map'
+	          }
+	      },
+	      function() {
+	          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+	          handler.bounds.extendWith(markers);
+	          // handler.fitMapToBounds();
+	      });
+	  });
 </script>

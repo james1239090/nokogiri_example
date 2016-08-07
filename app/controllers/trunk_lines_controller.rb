@@ -10,4 +10,8 @@ class TrunkLinesController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
 end
