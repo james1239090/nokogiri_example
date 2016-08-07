@@ -1,24 +1,34 @@
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 800px;'></div>
+<div class="row">
+  <form>
+    <div class="col-md-10">
+      <div class="form-group">
+
+        <input type="text" class="form-control" placeholder="請輸入地址" id="searchAddress">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary">搜尋</button>
+    </div>
+  </form>
 </div>
-<div></div>
+
 <script type="text/javascript">
   $(document).ready(function(){
-    handler = Gmaps.build('Google');
-    handler.buildMap({
-            provider: {
-                disableDefaultUI: true,
-                zoom: 15,
-                center: { lat: <%= @hash[0][:lat] %>, lng: <%= @hash[0][:lng] %> }
-            },
-            internal: {
-                id: 'map'
-            }
-        },
-        function() {
-            markers = handler.addMarkers(<%= raw @hash.to_json %>);
-            handler.bounds.extendWith(markers);
-            // handler.fitMapToBounds();
-        });
-    });
+                    handler = Gmaps.build('Google');
+                    handler.buildMap({
+                            provider: {
+                                disableDefaultUI: true,
+                                zoom: 15,
+                                center: { lat: <%= @hash[0][:lat] %>, lng: <%= @hash[0][:lng] %> }
+                            },
+                            internal: {
+                                id: 'map'
+                            }
+                        },
+                        function() {
+                            markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                            handler.bounds.extendWith(markers);
+                            // handler.fitMapToBounds();
+                        });
+                    });
 </script>
