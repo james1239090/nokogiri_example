@@ -2,16 +2,14 @@
   <form>
     <div class="col-md-10">
       <div class="form-group">
-
         <input type="text" class="form-control" placeholder="請輸入地址" id="searchAddress">
       </div>
     </div>
     <div class="col-md-2">
-      <button type="submit" class="btn btn-primary">搜尋</button>
+      <%= submit_tag "搜尋",remote: true, class: "btn btn-primary",method: :get, data: {disable_with: "搜尋中...."} %>
     </div>
   </form>
 </div>
-
 <script type="text/javascript">
   $(document).ready(function(){
                     handler = Gmaps.build('Google');
