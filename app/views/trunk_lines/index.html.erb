@@ -1,10 +1,10 @@
 <div class="row">
-  <%= simple_form_for :search,  url: trunk_lines_path , :method => :get do |f| %>
+  <%= simple_form_for :search ,url: trunk_lines_path , :method => :get do |f| %>
     <div class="col-md-10">
       <%= f.input :address, label: false, placeholder: '地址' ,:autofocus => true %>
     </div>
     <div class="col-md-2">
-      <%= f.submit "搜尋", class: "btn btn-primary" ,data:{disable_with: "搜尋中"}%>
+      <%= f.submit "搜尋", class: "btn btn-primary" ,data:{disable_with: "搜尋中"}, name:nil %>
     </div>
   <% end %>
 </div>

@@ -5,9 +5,18 @@ class TrunkLine < ApplicationRecord
   geocoded_by :full_address
   before_save :geocode
 
-  def self.search(search)
-
-  end
+  # def self.search(address)
+  #   if address
+  #     find(:all, :conditions => ['name LIKE ?', "%#{address}%"])
+  #   else
+  #     find(:all)
+  #   end
+  # end
+  scope :with_address, ->(address) {
+   if address.present?
+     where("address LIKE ?", "%#{address}%")
+   end
+ }
 
 
   protected
