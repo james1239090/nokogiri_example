@@ -5,6 +5,11 @@ class TrunkLine < ApplicationRecord
   geocoded_by :full_address
   before_save :geocode
 
+  def self.search(search)
+
+  end
+
+
   protected
   def reformat
     self.respond_area = self.respond_area.delete(" ")
