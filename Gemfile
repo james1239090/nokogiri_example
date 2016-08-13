@@ -30,6 +30,7 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'bootstrap-sass'
 gem 'simple_form'
+gem 'figaro'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem "awesome_rails_console"
