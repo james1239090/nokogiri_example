@@ -12,13 +12,4 @@ class TrunkLinesController < ApplicationController
 
   end
 
-  # def search
-  #   @search = params[:search][:address]
-  #   puts "#{@search}"
-  # end
-
-  def show
-
-  end
-
 end
