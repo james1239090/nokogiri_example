@@ -1,8 +1,8 @@
 class TrunkLinesController < ApplicationController
 
   def index
-    search  = params[:search] || {}
-    @trunklines = TrunkLine.search(search[:address])
+    @search  = params[:search] || {}
+    @trunklines = TrunkLine.search(@search[:address])
 
     @hash = Gmaps4rails.build_markers(@trunklines) do |trunkline, marker|
       marker.lat trunkline.latitude
