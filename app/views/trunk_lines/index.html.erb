@@ -4,7 +4,7 @@
       <%= f.input :address, label: false, placeholder: '地址' ,input_html: { value: @search[:address] } ,:autofocus => true %>
     </div>
     <div class="col-md-2">
-      <%= f.input :range, as: :boolean,label: "搜尋地址附近500公尺", input_html: { :checked => false } %>
+      <%= f.input :range, as: :boolean,label: "搜尋地址附近500公尺", input_html: { :checked => render_check_status(@search[:range]) } %>
     </div>
     <div class="col-md-2">
       <%= f.submit "搜尋", class: "btn btn-primary pull-right" ,data:{disable_with: "搜尋中"}, name:nil %>
