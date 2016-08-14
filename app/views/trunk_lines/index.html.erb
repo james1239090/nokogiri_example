@@ -1,32 +1,34 @@
 <div class="row">
   <%= simple_form_for :search ,url: trunk_lines_path , :method => :get do |f| %>
-    <div class="col-md-10">
+    <div class="col-md-8">
       <%= f.input :address, label: false, placeholder: '地址' ,input_html: { value: @search[:address] } ,:autofocus => true %>
     </div>
     <div class="col-md-2">
-      <%= f.submit "搜尋", class: "btn btn-primary" ,data:{disable_with: "搜尋中"}, name:nil %>
+      <%= f.input :range, as: :boolean,label: "搜尋地址附近500公尺", input_html: { :checked => false } %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit "搜尋", class: "btn btn-primary pull-right" ,data:{disable_with: "搜尋中"}, name:nil %>
     </div>
   <% end %>
 </div>
-    <script src="http://cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js">
-    </script>
+<script src="http://cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
-  	  handler = Gmaps.build('Google');
-  	  handler.buildMap({
-  	          provider: {
-  	              disableDefaultUI: true,
-  	              zoom: 15,
-  	              center: { lat: <%= @hash[0][:lat] %>, lng: <%= @hash[0][:lng] %> }
-  	          },
-  	          internal: {
-  	              id: 'map'
-  	          }
-  	      },
-  	      function() {
-  	          markers = handler.addMarkers(<%= raw @hash.to_json %>);
-  	          handler.bounds.extendWith(markers);
-  	          // handler.fitMapToBounds();
-  	      });
-  	  });
+        handler = Gmaps.build('Google');
+        handler.buildMap({
+                provider: {
+                    disableDefaultUI: true,
+                    zoom: 15,
+                    center: { lat: <%= @hash[0][:lat] %>, lng: <%= @hash[0][:lng] %> }
+                },
+                internal: {
+                    id: 'map'
+                }
+            },
+            function() {
+                markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                handler.bounds.extendWith(markers);
+                // handler.fitMapToBounds();
+            });
+        });
 </script>
