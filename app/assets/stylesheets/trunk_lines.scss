@@ -32,3 +32,8 @@ ul.ui-autocomplete {
         background-color: #0088cc;
     }
 }
+
+.ui-helper-hidden-accessible {
+    position: absolute;
+    left: -999em;
+}
