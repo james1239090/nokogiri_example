@@ -1,7 +1,7 @@
 <div class="row">
   <%= simple_form_for :search ,url: trunk_lines_path , :method => :get do |f| %>
     <div class="col-md-8">
-      <%= f.input :address, label: false, placeholder: '地址' ,input_html: { value: @search[:address] } ,:autofocus => true %>
+      <%= f.input :address, url: autocomplete_trunk_line_full_address_trunk_lines_path, :as => :autocomplete, label: false, placeholder: '地址' ,input_html: { value: @search[:address] } ,:autofocus => true %>
     </div>
     <div class="col-md-2">
       <%= f.input :range, as: :boolean,label: "搜尋地址附近500公尺", input_html: { :checked => render_check_status(@search[:range]) } %>

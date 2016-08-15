@@ -1,5 +1,5 @@
 class TrunkLinesController < ApplicationController
-
+  autocomplete :trunk_line, :full_address
   def index
     @search  = params[:search] || {}
     if (@search[:range] == "1")
