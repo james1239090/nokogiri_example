@@ -3,7 +3,7 @@ class TrunkLinesController < ApplicationController
   def index
     @search  = params[:search] || {}
     if (@search[:range] == "1")
-      @trunklines = TrunkLine.near(@search[:address],0.5, units: "km")
+      @trunklines = TrunkLine.near(result,0.5, units: "km")
     else
       @trunklines = TrunkLine.search(@search[:address])
     end

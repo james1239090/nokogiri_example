@@ -8,27 +8,52 @@
     </div>
     <div class="col-md-2">
       <%= f.submit "搜尋", class: "btn btn-primary pull-right" ,data:{disable_with: "搜尋中"}, name:nil %>
+
     </div>
   <% end %>
 </div>
+
 <script src="http://cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 <script type="text/javascript">
-  $(document).ready(function(){
-        handler = Gmaps.build('Google');
-        handler.buildMap({
-                provider: {
-                    disableDefaultUI: true,
-                    zoom: 15,
-                    center: { lat: <%= @hash[0][:lat] %>, lng: <%= @hash[0][:lng] %> }
-                },
-                internal: {
-                    id: 'map'
-                }
-            },
-            function() {
-                markers = handler.addMarkers(<%= raw @hash.to_json %>);
-                handler.bounds.extendWith(markers);
-                // handler.fitMapToBounds();
-            });
-        });
+  $(document).ready(function() {
+      getLocation();
+      var userLocation = {};
+
+      function initMap() {
+          handler = Gmaps.build('Google');
+          handler.buildMap({
+                  provider: {
+                      disableDefaultUI: true,
+                      zoom: 15,
+                      center: { lat: userLocation.lat, lng: userLocation.lng }
+                  },
+                  internal: {
+                      id: 'map'
+                  }
+              },
+              function() {
+                  markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                  handler.bounds.extendWith(markers);
+                  // handler.fitMapToBounds();
+              });
+      }
+
+
+      function getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+               console.log("Geolocation is not supported by this browser.");
+          }
+      }
+
+      function showPosition(position) {
+          userLocation.lat = position.coords.latitude;
+          userLocation.lng = position.coords.longitude;
+          initMap();
+      }
+  });
+
+
+
 </script>
