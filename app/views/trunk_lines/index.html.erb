@@ -17,7 +17,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
       getLocation();
-      var userLocation = {};
+      var userLocation = {lat:22.684465279202286, lng:120.31153561257864};
 
       function initMap() {
           handler = Gmaps.build('Google');
@@ -41,16 +41,22 @@
 
       function getLocation() {
           if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(showPosition);
+              navigator.geolocation.getCurrentPosition(showPosition,showError);
           } else {
                console.log("Geolocation is not supported by this browser.");
           }
+
       }
 
       function showPosition(position) {
           userLocation.lat = position.coords.latitude;
           userLocation.lng = position.coords.longitude;
           initMap();
+      }
+      function showError(error){
+        if (error){
+          initMap();
+        }
       }
   });
 
